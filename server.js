@@ -23,4 +23,6 @@ app.use("/api/order",orderRouter)
 app.get('/',(req,res)=>{
     res.send("API Working")
 })
-export default app
+app.listen(port,()=>{
+    console.log(`Server Started on http://localhost:${port}`)
+})
