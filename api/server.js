@@ -5,25 +5,31 @@ import foodRouter from "../routes/foodRoute.js";
 import userRouter from "../routes/userRoute.js";
 import cartRouter from "../routes/cartRoute.js";
 import orderRouter from "../routes/orderRoute.js";
-import serverless from "serverless-http";
-export const handler = serverless(app);
-
+import 'dotenv/config';
 
 const app = express();
 
-app.use(cors());
+// CORS FIX
+app.use(cors({
+    origin: ["http://localhost:5173", "https://your-frontend.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.use(express.json());
 
-// connect DB
+// DB
 connectDB();
 
+// API ROUTES
 app.use("/api/food", foodRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
-  res.send("Backend API working!");
+    res.send("Backend is running from Vercel!");
 });
 
+// VERY IMPORTANT:
 export default app;
