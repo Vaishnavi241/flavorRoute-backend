@@ -11,8 +11,7 @@ const app = express();
 
 // CORS FIX
 app.use(cors({
-    origin: ["http://localhost:5173", "https://your-frontend.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: ["http://localhost:5173", "https://flavor-route-frontend.vercel.app"],
     credentials: true
 }));
 
@@ -28,8 +27,9 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
-    res.send("Backend is running from Vercel!");
+    res.send("Backend API working");
 });
 
 // VERY IMPORTANT:
+export const handler=serverless(app)
 export default app;
