@@ -11,8 +11,7 @@ const app = express();
 
 // CORS FIX
 app.use(cors({
-    origin: ["http://localhost:5173", "https://flavor-route-frontend.vercel.app"],
-    credentials: true
+    origin: "*",
 }));
 
 app.use(express.json());
